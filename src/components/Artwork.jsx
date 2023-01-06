@@ -51,9 +51,6 @@ function Artwork({classification,century,culture,department,primaryimageurl,tech
           Culture:{culture}
           </Typography>
           <Typography gutterBottom variant="body2" color="text.secondary">
-          Technique:{technique}
-          </Typography>
-          <Typography gutterBottom variant="body2" color="text.secondary">
           Department:{department}
           </Typography>
           <Typography gutterBottom variant="body2" color="text.secondary" >

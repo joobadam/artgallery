@@ -3,13 +3,17 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import './App.css';
 import {
-  BrowserRouter,
   Routes,
-  Route
+  Route,
+  BrowserRouter
 } from "react-router-dom";
 import HomePage from './Pages/HomePage';
 import ArtworkPage from './Pages/ArtworkPage';
 import FavoritesPage from './Pages/FavoritesPage';
+import LandingPage from './Pages/LandingPage';
+import SigninPage from './Pages/SigninPage';
+import { AuthContextProvider } from './context/AuthContext';
+import Protected from './components/Protected';
 
 
 
@@ -34,20 +38,25 @@ function App() {
   }
  
   return (
- 
-      <BrowserRouter>
+
+      <AuthContextProvider>
           <Routes>
+              <Route path='/' element={<LandingPage />} />
+              <Route path='/signin' element={<SigninPage/>} />               
               <Route path='/home'element={ <HomePage
                fetchData={fetchData}
                data={data}
                setData={setData}
                filter={filter} 
                setFilter={setFilter}/> }/>
-              <Route path='/artwork/:id'element={ <ArtworkPage/> }/>
-              <Route path='/favorite'element={<FavoritesPage/>}/>
-          </Routes>
-        </BrowserRouter>
 
+              <Route path='/artwork/:id'element={ <ArtworkPage/> }/>
+              
+              <Route path='/favorite'element={<FavoritesPage/>}/>
+                        
+          </Routes>
+        </AuthContextProvider>
+       
   );
 }
 

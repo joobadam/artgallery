@@ -14,11 +14,22 @@ import { Container } from '@mui/material';
 import { Grid } from '@mui/material';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { Link } from 'react-router-dom';
+import { UserAuth } from '../context/AuthContext';
 
 
 
 export const Header = ({filter,setFilter}) => {
 
+
+    const {  logOut } = UserAuth();
+
+    const handleSignOut = async () => {
+      try {
+        await logOut()
+      } catch (error) {
+        console.log(error)
+      }
+    }
 
 /* 
     //AutoComplete része
@@ -48,10 +59,13 @@ export const Header = ({filter,setFilter}) => {
                         <Typography>Home</Typography>
                     </Grid>
                     <Grid item xs={12} sm={1} >
-                        <IconButton color='inherit' >
+                    <Link to="/" style={{color:"white"}}>
+                        <IconButton color='inherit'onClick={handleSignOut} >
                             <LogoutIcon fontSize='medium' />
-                        </IconButton>
+                        </IconButton >
+                    </Link> 
                         <Typography>Logout</Typography>
+
                  </Grid>
                     <Grid item xs={12} sm={1} >
                         <Link to="/favorite" style={{color:"white"}}>
